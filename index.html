@@ -1,0 +1,593 @@
+<title>SuperSpace</title>
+<meta name="description" content="Talk to verified experts — live 1:1 video and audio consultations, pay per minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        bg: '#17101F', surface: '#241C2C', surface2: '#2F2737',
+        berry: '#E91E63', glow: '#FF4081',
+        ink: '#EBDEF4', muted: '#E4BDC2',
+        amber: '#F5A623', gold: '#FFCD6B',
+      },
+      fontFamily: {
+        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      borderRadius: { glass: '22px' },
+    }
+  }
+}
+</script>
+<style>
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #17101F; color: #EBDEF4;
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  h1, h2, h3, .font-display { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.02em; }
+
+  .glass { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.09); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .glass-strong { background: rgba(47,39,55,.62); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .grad-berry { background: linear-gradient(135deg,#E91E63 0%,#FF4081 100%); }
+  .grad-gold  { background: linear-gradient(135deg,#F5A623 0%,#FFCD6B 100%); }
+  .text-grad  { background: linear-gradient(120deg,#FF6FA5 0%,#FF4081 55%,#E91E63 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .btn-berry { background: linear-gradient(135deg,#E91E63 0%,#FF4081 100%); box-shadow: 0 10px 30px -8px rgba(233,30,99,.6), 0 2px 8px -2px rgba(255,64,129,.5); transition: transform .18s ease, box-shadow .18s ease; }
+  .btn-berry:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px -8px rgba(233,30,99,.75), 0 3px 12px -2px rgba(255,64,129,.6); }
+  .btn-gold { background: linear-gradient(135deg,#F5A623 0%,#FFCD6B 100%); box-shadow: 0 10px 30px -8px rgba(245,166,35,.5); transition: transform .18s ease, box-shadow .18s ease; }
+  .btn-gold:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px -8px rgba(245,166,35,.68); }
+
+  .blob { position: absolute; border-radius: 9999px; filter: blur(90px); opacity: .55; pointer-events: none; z-index: 0; }
+  .card-hover { transition: transform .22s ease, border-color .22s ease, background .22s ease; }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.18); }
+
+  .float { animation: float 6s ease-in-out infinite; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+  :focus-visible { outline: 2px solid #FF4081; outline-offset: 3px; border-radius: 6px; }
+
+  details.faq summary { list-style: none; cursor: pointer; }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq .chev { transition: transform .25s ease; }
+  details.faq[open] .chev { transform: rotate(180deg); }
+  details.faq .answer { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s ease, opacity .3s ease, margin .3s ease; }
+  details.faq[open] .answer { max-height: 360px; opacity: 1; margin-top: 14px; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .legal { max-width: 48rem; }
+  .legal h3 { font-size: 1.05rem; margin-top: 1.6rem; }
+  .legal p, .legal li { color: #E4BDC2; font-size: .95rem; line-height: 1.7; }
+  .legal ul { list-style: disc; padding-left: 1.25rem; margin-top: .4rem; display: flex; flex-direction: column; gap: .25rem; }
+  .legal a { color: #FF6FA5; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float { animation: none; }
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+
+<!-- ======================= NAVBAR ======================= -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="glass-strong mx-auto mt-3 flex max-w-6xl items-center justify-between gap-4 rounded-full px-4 py-2.5 sm:px-5" style="width:calc(100% - 1.5rem);">
+    <a href="#top" class="flex items-center gap-2.5 shrink-0" aria-label="SuperSpace home">
+      <span class="grid h-9 w-9 place-items-center rounded-xl grad-berry shadow-lg">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-4.4 0-8 3.2-8 7.2 0 2.3 1.2 4.3 3.1 5.6V20l3.2-1.7c.55.1 1.12.15 1.7.15 4.4 0 8-3.2 8-7.2S16.4 3 12 3Z" fill="#fff"/><circle cx="8.8" cy="10.2" r="1.15" fill="#E91E63"/><circle cx="12" cy="10.2" r="1.15" fill="#E91E63"/><circle cx="15.2" cy="10.2" r="1.15" fill="#E91E63"/></svg>
+      </span>
+      <span class="font-display text-lg font-extrabold tracking-tight">SuperSpace</span>
+    </a>
+    <nav class="hidden items-center gap-7 text-sm font-medium text-muted lg:flex" aria-label="Primary">
+      <a href="#how" class="hover:text-ink transition-colors">How it works</a>
+      <a href="#experts" class="hover:text-ink transition-colors">Experts</a>
+      <a href="#for-experts" class="hover:text-ink transition-colors">For Experts</a>
+      <a href="#pricing" class="hover:text-ink transition-colors">Pricing</a>
+      <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="#get-app" class="btn-berry rounded-full px-4 py-2 text-sm font-semibold text-white sm:px-5">Get the app</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- ======================= HERO ======================= -->
+<section class="relative overflow-hidden px-5 pt-32 pb-20 sm:pt-40 sm:pb-28">
+  <div class="blob h-[460px] w-[460px] bg-[#2E1A47]" style="top:-120px; left:-120px; opacity:.7;"></div>
+  <div class="blob h-[420px] w-[420px] bg-[#E91E63]" style="top:40px; right:-140px; opacity:.32;"></div>
+  <div class="blob h-[300px] w-[300px] bg-[#FF4081]" style="bottom:-120px; left:30%; opacity:.2;"></div>
+
+  <div class="relative z-10 mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+    <div>
+      <h1 class="font-display text-5xl font-extrabold leading-[1.04] sm:text-6xl lg:text-[4.2rem]">
+        Talk to a <span class="text-grad">verified expert</span> in minutes.
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-muted">
+        Book a live 1:1 video or voice consultation with career mentors, coaches, consultants and specialists. No subscription — pay only for the minutes you talk.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#experts" class="btn-berry rounded-full px-7 py-3.5 text-base font-bold text-white">Find an expert</a>
+        <a href="#for-experts" class="glass card-hover rounded-full px-7 py-3.5 text-base font-bold text-ink">Become an expert</a>
+      </div>
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href="#get-app" class="glass card-hover flex items-center gap-2.5 rounded-xl px-4 py-2.5" aria-label="Download on the App Store">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M16.4 12.8c0-2 1.1-3.1 1.9-3.8-1-1.5-2.6-1.7-3.1-1.7-1.3-.1-2.6.8-3.2.8-.7 0-1.7-.8-2.8-.8-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.1 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.2-2.4-.1 0-2.3-.9-2.3-3.1ZM14.3 5.9c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2Z"/></svg>
+          <span class="text-left leading-tight"><span class="block text-[10px] text-muted">Download on the</span><span class="block text-sm font-bold">App Store</span></span>
+        </a>
+        <a href="#get-app" class="glass card-hover flex items-center gap-2.5 rounded-xl px-4 py-2.5" aria-label="Get it on Google Play">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.2.2-.3.5-.3.9v17.6c0 .4.1.7.3.9l9.3-9.7L3.6 2.3Z" fill="#FF4081"/><path d="m16.3 8.5-3.4-2-3 3.1 3 3.1 3.4-2c1-.6 1-1.6 0-2.2Z" fill="#FFCD6B"/><path d="m12.9 6.5-8.5-4.9c-.3-.2-.6-.2-.8-.1l9.3 8.1 0 0Z" fill="#6DDD8E"/><path d="m12.9 13.5-9.3 8.1c.2.1.5.1.8-.1l8.5-4.9Z" fill="#E91E63"/></svg>
+          <span class="text-left leading-tight"><span class="block text-[10px] text-muted">Get it on</span><span class="block text-sm font-bold">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- phone / expert card visual -->
+    <div class="relative mx-auto flex justify-center">
+      <div class="blob h-64 w-64 bg-[#E91E63]" style="top:30%; left:20%; opacity:.28;"></div>
+      <div class="float relative z-10 w-[300px] rounded-[2.4rem] border border-white/10 bg-surface p-3 shadow-2xl" style="box-shadow:0 40px 80px -20px rgba(0,0,0,.6), 0 0 60px -20px rgba(233,30,99,.4);">
+        <div class="rounded-[2rem] bg-[#1C1426] p-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold text-muted">Expert profile</span>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-berry/15 px-2.5 py-1 text-[11px] font-bold text-glow">✓ Verified</span>
+          </div>
+          <div class="mt-5 flex flex-col items-center text-center">
+            <div class="rounded-full p-[3px] grad-berry">
+              <div class="grid h-24 w-24 place-items-center rounded-full bg-surface2 font-display text-3xl font-bold text-ink">A</div>
+            </div>
+            <h3 class="mt-3 font-display text-xl font-bold">Example Expert</h3>
+            <p class="text-sm text-muted">Career &amp; Interview Coach</p>
+            <span class="mt-4 grad-berry rounded-full px-4 py-1.5 text-sm font-bold text-white shadow-lg">₹15/min</span>
+          </div>
+          <div class="mt-5 grid grid-cols-2 gap-2.5">
+            <button class="flex items-center justify-center gap-2 rounded-xl bg-white/5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white/10">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.9c0-.5.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.3Z"/></svg>
+              Voice
+            </button>
+            <button class="btn-berry flex items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold text-white">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 17.5v-11Zm14 2.2 3.1-2.1c.6-.4 1.4 0 1.4.8v9.2c0 .8-.8 1.2-1.4.8L18 15.3V8.7Z"/></svg>
+              Video
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRUST BAR ======================= -->
+<section class="relative z-10 px-5 pb-4">
+  <div class="glass mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-glass px-6 py-5 text-sm font-semibold">
+    <span class="flex items-center gap-2.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" fill="#FF4081" opacity=".2"/><path d="m9 12 2 2 4-4" stroke="#FF4081" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Verified experts</span>
+    <span class="flex items-center gap-2.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" fill="#FF4081" opacity=".2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#FF4081" stroke-width="2" stroke-linecap="round"/></svg>Private &amp; secure calls</span>
+    <span class="flex items-center gap-2.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#FF4081" opacity=".2"/><path d="M12 7v5l3 2" stroke="#FF4081" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pay per minute</span>
+    <span class="flex items-center gap-2.5"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 3 4 14h6l-1 7 9-11h-6l1-7Z" fill="#FF4081" opacity=".25" stroke="#FF4081" stroke-width="1.6" stroke-linejoin="round"/></svg>UPI payouts for experts</span>
+  </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section id="how" class="relative px-5 py-24">
+  <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">How it works</p>
+      <h2 class="mt-3 font-display text-4xl font-extrabold sm:text-5xl">Advice in three taps</h2>
+      <p class="mt-4 text-lg text-muted">No forms, no waiting rooms. Find someone who gets it and start talking.</p>
+    </div>
+    <ol class="mt-14 grid gap-6 md:grid-cols-3">
+      <li class="glass card-hover reveal rounded-glass p-7">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-berry/15"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#FF4081" stroke-width="2"/><path d="m20 20-3.2-3.2" stroke="#FF4081" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <span class="font-display text-3xl font-extrabold text-white/10">01</span>
+        </div>
+        <h3 class="mt-5 font-display text-xl font-bold">Browse experts</h3>
+        <p class="mt-2 text-muted">Filter by category, rating and price, and read reviews before you commit.</p>
+      </li>
+      <li class="glass card-hover reveal rounded-glass p-7">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-berry/15"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2" stroke="#FF4081" stroke-width="2"/><path d="m15 10 5-3v10l-5-3" stroke="#FF4081" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <span class="font-display text-3xl font-extrabold text-white/10">02</span>
+        </div>
+        <h3 class="mt-5 font-display text-xl font-bold">Start a voice or video call</h3>
+        <p class="mt-2 text-muted">Tap to connect when an expert is available, or schedule a time that suits you.</p>
+      </li>
+      <li class="glass card-hover reveal rounded-glass p-7">
+        <div class="flex items-center justify-between">
+          <span class="grid h-12 w-12 place-items-center rounded-2xl bg-berry/15"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="#FF4081" stroke-width="2"/><path d="M12 8v8M9.5 10h3.2a1.8 1.8 0 0 1 0 3.6H9.5M14.5 14h-3.2a1.8 1.8 0 0 1 0-3.6" stroke="#FF4081" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="font-display text-3xl font-extrabold text-white/10">03</span>
+        </div>
+        <h3 class="mt-5 font-display text-xl font-bold">Pay for minutes used</h3>
+        <p class="mt-2 text-muted">The meter stops when you hang up. Pay securely over UPI — nothing more.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================= CATEGORIES ======================= -->
+<section class="relative px-5 pb-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="flex flex-wrap items-end justify-between gap-3 reveal">
+      <h2 class="font-display text-3xl font-extrabold sm:text-4xl">Find your category</h2>
+      <a href="#experts" class="text-sm font-semibold text-glow hover:text-ink transition-colors">See all experts →</a>
+    </div>
+    <div class="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-4 reveal">
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">🎯</span><span class="font-semibold">Career</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">💪</span><span class="font-semibold">Fitness</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">📈</span><span class="font-semibold">Business</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">🧘</span><span class="font-semibold">Wellness / Mind</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">💰</span><span class="font-semibold">Finance</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">⚖️</span><span class="font-semibold">Legal</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">🔮</span><span class="font-semibold">Astrology</span></a>
+      <a href="#experts" class="glass card-hover flex items-center gap-3 rounded-2xl px-5 py-4"><span class="text-2xl">💻</span><span class="font-semibold">Tech</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= EXAMPLE EXPERTS ======================= -->
+<section id="experts" class="relative px-5 py-24">
+  <div class="blob h-[360px] w-[360px] bg-[#2E1A47]" style="top:10%; right:-120px; opacity:.45;"></div>
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">Expert profiles</p>
+      <h2 class="mt-3 font-display text-4xl font-extrabold sm:text-5xl">What a profile looks like</h2>
+      <p class="mt-4 text-lg text-muted">Every advisor is identity-verified before going live. The cards below are examples of how profiles appear in the app.</p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="glass card-hover reveal rounded-glass p-6 text-center">
+        <div class="rounded-full p-[3px] grad-berry mx-auto w-fit"><div class="grid h-20 w-20 place-items-center rounded-full bg-surface2 font-display text-2xl font-bold">A</div></div>
+        <h3 class="mt-4 font-display text-lg font-bold">Example Expert</h3>
+        <p class="text-sm text-muted">Career &amp; Interview Coach</p>
+        <span class="mt-2 inline-flex items-center gap-1 rounded-full bg-berry/15 px-2.5 py-1 text-[11px] font-bold text-glow">✓ Verified</span>
+        <p class="mt-2 font-display text-lg font-extrabold text-grad">₹15<span class="text-sm font-semibold text-muted">/min</span></p>
+        <div class="mt-4 grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/5 py-2 text-sm font-semibold hover:bg-white/10 transition-colors"><svg width="14" height="14" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.9c0-.5.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.3Z"/></svg>Voice</a>
+          <a href="#" class="btn-berry flex items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-semibold text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 17.5v-11Zm14 2.2 3.1-2.1c.6-.4 1.4 0 1.4.8v9.2c0 .8-.8 1.2-1.4.8L18 15.3V8.7Z"/></svg>Video</a>
+        </div>
+      </article>
+      <article class="glass card-hover reveal rounded-glass p-6 text-center">
+        <div class="rounded-full p-[3px] grad-berry mx-auto w-fit"><div class="grid h-20 w-20 place-items-center rounded-full bg-surface2 font-display text-2xl font-bold">B</div></div>
+        <h3 class="mt-4 font-display text-lg font-bold">Example Expert</h3>
+        <p class="text-sm text-muted">Startup &amp; Growth Advisor</p>
+        <span class="mt-2 inline-flex items-center gap-1 rounded-full bg-berry/15 px-2.5 py-1 text-[11px] font-bold text-glow">✓ Verified</span>
+        <p class="mt-2 font-display text-lg font-extrabold text-grad">₹40<span class="text-sm font-semibold text-muted">/min</span></p>
+        <div class="mt-4 grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/5 py-2 text-sm font-semibold hover:bg-white/10 transition-colors"><svg width="14" height="14" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.9c0-.5.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.3Z"/></svg>Voice</a>
+          <a href="#" class="btn-berry flex items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-semibold text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 17.5v-11Zm14 2.2 3.1-2.1c.6-.4 1.4 0 1.4.8v9.2c0 .8-.8 1.2-1.4.8L18 15.3V8.7Z"/></svg>Video</a>
+        </div>
+      </article>
+      <article class="glass card-hover reveal rounded-glass p-6 text-center">
+        <div class="rounded-full p-[3px] grad-berry mx-auto w-fit"><div class="grid h-20 w-20 place-items-center rounded-full bg-surface2 font-display text-2xl font-bold">C</div></div>
+        <h3 class="mt-4 font-display text-lg font-bold">Example Expert</h3>
+        <p class="text-sm text-muted">Yoga &amp; Mindfulness Coach</p>
+        <span class="mt-2 inline-flex items-center gap-1 rounded-full bg-berry/15 px-2.5 py-1 text-[11px] font-bold text-glow">✓ Verified</span>
+        <p class="mt-2 font-display text-lg font-extrabold text-grad">₹12<span class="text-sm font-semibold text-muted">/min</span></p>
+        <div class="mt-4 grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/5 py-2 text-sm font-semibold hover:bg-white/10 transition-colors"><svg width="14" height="14" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.9c0-.5.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.3Z"/></svg>Voice</a>
+          <a href="#" class="btn-berry flex items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-semibold text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 17.5v-11Zm14 2.2 3.1-2.1c.6-.4 1.4 0 1.4.8v9.2c0 .8-.8 1.2-1.4.8L18 15.3V8.7Z"/></svg>Video</a>
+        </div>
+      </article>
+      <article class="glass card-hover reveal rounded-glass p-6 text-center">
+        <div class="rounded-full p-[3px] grad-berry mx-auto w-fit"><div class="grid h-20 w-20 place-items-center rounded-full bg-surface2 font-display text-2xl font-bold">D</div></div>
+        <h3 class="mt-4 font-display text-lg font-bold">Example Expert</h3>
+        <p class="text-sm text-muted">Personal Finance Planner</p>
+        <span class="mt-2 inline-flex items-center gap-1 rounded-full bg-berry/15 px-2.5 py-1 text-[11px] font-bold text-glow">✓ Verified</span>
+        <p class="mt-2 font-display text-lg font-extrabold text-grad">₹30<span class="text-sm font-semibold text-muted">/min</span></p>
+        <div class="mt-4 grid grid-cols-2 gap-2">
+          <a href="#" class="flex items-center justify-center gap-1.5 rounded-xl bg-white/5 py-2 text-sm font-semibold hover:bg-white/10 transition-colors"><svg width="14" height="14" viewBox="0 0 24 24" fill="#EBDEF4" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.9c0-.5.4-1 1-1h3.5c.5 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.3Z"/></svg>Voice</a>
+          <a href="#" class="btn-berry flex items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-semibold text-white"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h9A1.5 1.5 0 0 1 16 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 17.5v-11Zm14 2.2 3.1-2.1c.6-.4 1.4 0 1.4.8v9.2c0 .8-.8 1.2-1.4.8L18 15.3V8.7Z"/></svg>Video</a>
+        </div>
+      </article>
+    </div>
+    <p class="mt-6 text-center text-xs text-muted">Profiles shown are illustrative examples and do not represent real individuals. Rates are set by each expert.</p>
+  </div>
+</section>
+
+<!-- ======================= WHY MINDSPACE ======================= -->
+<section class="relative px-5 py-16">
+  <div class="mx-auto max-w-6xl">
+    <div class="max-w-2xl reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">Why SuperSpace</p>
+      <h2 class="mt-3 font-display text-4xl font-extrabold sm:text-5xl">Built on trust, priced by the minute</h2>
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z" stroke="#FF4081" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">Identity-verified experts</h3>
+        <p class="mt-1.5 text-muted">Every expert completes identity verification before they can accept calls.</p>
+      </div>
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2" stroke="#FF4081" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">Private 1:1 calls</h3>
+        <p class="mt-1.5 text-muted">Calls run over secure, encrypted connections and are not recorded unless both sides opt in.</p>
+      </div>
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#FF4081" stroke-width="1.8"/><path d="M12 7v5l3 2" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">Transparent per-minute rate</h3>
+        <p class="mt-1.5 text-muted">See the exact ₹/min before you connect, with a live meter during the call.</p>
+      </div>
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6h12v12H6z" stroke="#FF4081" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-5" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">No subscription</h3>
+        <p class="mt-1.5 text-muted">Pay only when you talk. No monthly fee, no lock-in, no auto-renewals.</p>
+      </div>
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3Z" stroke="#FF4081" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">Ratings &amp; reviews</h3>
+        <p class="mt-1.5 text-muted">Only people who completed a call can leave a rating, so feedback reflects real sessions.</p>
+      </div>
+      <div class="glass card-hover reveal rounded-glass p-6">
+        <span class="grid h-11 w-11 place-items-center rounded-xl bg-berry/15"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 8-8M20 12a8 8 0 0 1-8 8" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round"/><path d="M12 8v4l3 2" stroke="#FF4081" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3 class="mt-4 font-display text-lg font-bold">Support when calls fail</h3>
+        <p class="mt-1.5 text-muted">If a call drops due to a connection issue, affected minutes may be refunded per our terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOR EXPERTS ======================= -->
+<section id="for-experts" class="relative px-5 py-24">
+  <div class="blob h-[400px] w-[400px] bg-[#F5A623]" style="top:20%; left:-140px; opacity:.16;"></div>
+  <div class="relative z-10 mx-auto max-w-6xl">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 rounded-full bg-amber/15 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wide text-gold">For experts &amp; advisors</span>
+        <h2 class="mt-5 font-display text-4xl font-extrabold leading-[1.08] sm:text-5xl">Set your rate, go online, <span class="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">get paid.</span></h2>
+        <p class="mt-5 max-w-lg text-lg text-muted">Turn the knowledge you already have into income. You decide your ₹/min and your hours — SuperSpace handles discovery, calls and payments.</p>
+        <ul class="mt-7 grid gap-3 sm:grid-cols-2">
+          <li class="flex items-center gap-3"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber/15 text-gold">✓</span><span class="font-semibold">Keep up to 80%</span></li>
+          <li class="flex items-center gap-3"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber/15 text-gold">✓</span><span class="font-semibold">UPI withdrawals</span></li>
+          <li class="flex items-center gap-3"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber/15 text-gold">✓</span><span class="font-semibold">Flexible hours</span></li>
+          <li class="flex items-center gap-3"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber/15 text-gold">✓</span><span class="font-semibold">You set your own rate</span></li>
+        </ul>
+        <a href="#" class="btn-gold mt-8 inline-block rounded-full px-7 py-3.5 text-base font-bold text-[#2A1C05]">Become an expert</a>
+        <p class="mt-3 text-xs text-muted">Revenue share and withdrawal timelines are set out in the Expert Terms.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="glass-strong rounded-glass p-7" style="box-shadow:0 30px 70px -25px rgba(245,166,35,.25);">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-sm text-muted">Example monthly earnings</p>
+              <p class="font-display text-4xl font-extrabold text-gold" style="font-variant-numeric:tabular-nums;">₹84,200</p>
+            </div>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-white/8 px-3 py-1.5 text-sm font-bold text-gold">▲ 23%</span>
+          </div>
+          <div class="mt-7 flex h-36 items-end justify-between gap-2.5" aria-hidden="true">
+            <div class="w-full rounded-t-lg bg-white/8" style="height:42%"></div>
+            <div class="w-full rounded-t-lg bg-white/8" style="height:55%"></div>
+            <div class="w-full rounded-t-lg bg-white/8" style="height:48%"></div>
+            <div class="w-full rounded-t-lg bg-white/8" style="height:68%"></div>
+            <div class="w-full rounded-t-lg bg-white/8" style="height:60%"></div>
+            <div class="w-full rounded-t-lg bg-white/8" style="height:82%"></div>
+            <div class="w-full rounded-t-lg grad-gold" style="height:100%"></div>
+          </div>
+          <div class="mt-2 flex justify-between text-[11px] text-muted" style="font-variant-numeric:tabular-nums;"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          <div class="mt-6 flex items-center justify-between rounded-2xl bg-white/5 p-4">
+            <div class="flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-xl grad-gold text-lg text-[#2A1C05]">⚡</span>
+              <div><p class="text-sm font-semibold">Withdraw to UPI</p><p class="text-xs text-muted">Straight to your bank</p></div>
+            </div>
+            <span class="rounded-full bg-amber/15 px-3 py-1.5 text-sm font-bold text-gold">Available</span>
+          </div>
+          <p class="mt-4 text-center text-xs text-muted">Illustrative figures only. Actual earnings depend on your rate, hours and demand, and are not guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FAQ ======================= -->
+<section id="faq" class="relative px-5 py-20">
+  <div class="mx-auto max-w-3xl">
+    <div class="text-center reveal">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">FAQ</p>
+      <h2 class="mt-3 font-display text-4xl font-extrabold sm:text-5xl" id="pricing">Good questions</h2>
+    </div>
+    <div class="mt-10 flex flex-col gap-3.5">
+      <details class="faq glass rounded-glass px-6 py-5 reveal">
+        <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">How does pricing work?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="answer text-muted">Each expert sets a per-minute rate in rupees, shown before you connect. A live meter runs during the call and you pay only for the minutes you actually talk, billed via UPI. There is no subscription and no minimum.</div>
+      </details>
+      <details class="faq glass rounded-glass px-6 py-5 reveal">
+        <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">Is my call private?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="answer text-muted">Calls run over secure, encrypted connections and are not recorded unless both participants opt in. How we handle your data is described in our Privacy Policy below.</div>
+      </details>
+      <details class="faq glass rounded-glass px-6 py-5 reveal">
+        <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">How do payouts work for experts?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="answer text-muted">Experts keep up to 80% of call earnings, which accrue to an in-app balance and can be withdrawn to a UPI ID. Exact revenue share and withdrawal timelines are set out in the Expert Terms.</div>
+      </details>
+      <details class="faq glass rounded-glass px-6 py-5 reveal">
+        <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">What if the call drops?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="answer text-muted">The meter pauses when a connection drops, and you can reconnect to continue. Minutes lost to a genuine connection issue may be refunded to your wallet in line with our refund policy.</div>
+      </details>
+      <details class="faq glass rounded-glass px-6 py-5 reveal">
+        <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">Do I need to subscribe?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <div class="answer text-muted">No. SuperSpace is pay-per-minute. There are no monthly plans, membership fees or auto-renewals — you only pay for the calls you take.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FINAL CTA ======================= -->
+<section id="get-app" class="relative px-5 py-16">
+  <div class="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] px-6 py-16 text-center sm:px-12 reveal" style="background:linear-gradient(135deg,#E91E63 0%,#FF4081 55%,#B0125A 100%);">
+    <div class="blob h-72 w-72 bg-[#2E1A47]" style="top:-80px; right:-60px; opacity:.5;"></div>
+    <div class="relative z-10">
+      <h2 class="font-display text-4xl font-extrabold text-white sm:text-5xl">Your next breakthrough is one call away.</h2>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-white/85">Download SuperSpace and talk to a verified expert.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="#" class="flex items-center gap-2.5 rounded-xl bg-[#17101F] px-5 py-3 text-white transition-transform hover:scale-105" aria-label="Download on the App Store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.8c0-2 1.1-3.1 1.9-3.8-1-1.5-2.6-1.7-3.1-1.7-1.3-.1-2.6.8-3.2.8-.7 0-1.7-.8-2.8-.8-1.4 0-2.7.8-3.5 2.1-1.5 2.6-.4 6.4 1.1 8.5.7 1 1.6 2.2 2.7 2.1 1.1 0 1.5-.7 2.8-.7s1.6.7 2.8.7c1.1 0 1.9-1 2.6-2 .8-1.2 1.1-2.3 1.2-2.4-.1 0-2.3-.9-2.3-3.1ZM14.3 5.9c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2Z"/></svg>
+          <span class="text-left leading-tight"><span class="block text-[10px] text-white/70">Download on the</span><span class="block text-sm font-bold">App Store</span></span>
+        </a>
+        <a href="#" class="flex items-center gap-2.5 rounded-xl bg-[#17101F] px-5 py-3 text-white transition-transform hover:scale-105" aria-label="Get it on Google Play">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.2.2-.3.5-.3.9v17.6c0 .4.1.7.3.9l9.3-9.7L3.6 2.3Z" fill="#FF4081"/><path d="m16.3 8.5-3.4-2-3 3.1 3 3.1 3.4-2c1-.6 1-1.6 0-2.2Z" fill="#FFCD6B"/><path d="m12.9 6.5-8.5-4.9c-.3-.2-.6-.2-.8-.1l9.3 8.1Z" fill="#6DDD8E"/><path d="m12.9 13.5-9.3 8.1c.2.1.5.1.8-.1l8.5-4.9Z" fill="#E91E63"/></svg>
+          <span class="text-left leading-tight"><span class="block text-[10px] text-white/70">Get it on</span><span class="block text-sm font-bold">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LEGAL: TERMS ======================= -->
+<section id="terms" class="relative px-5 pt-20 pb-10 border-t border-white/8">
+  <div class="legal mx-auto reveal">
+    <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">Legal</p>
+    <h2 class="mt-2 font-display text-3xl font-extrabold sm:text-4xl">Terms of Service</h2>
+    <p class="mt-2 text-sm text-muted">Last updated: 12 September 2026</p>
+    <div class="glass mt-5 rounded-2xl p-4 text-sm text-muted">⚠️ This is a starting template, not legal advice. Replace the bracketed placeholders and have it reviewed by a qualified lawyer before you publish or launch.</div>
+
+    <h3 class="font-display font-bold text-ink">1. About these Terms</h3>
+    <p>SuperSpace ("SuperSpace", "we", "us") is a mobile platform operated by [Legal Entity Name], [address], India, that connects users seeking guidance ("Seekers") with independent third-party experts and advisors ("Experts"). By creating an account or using the app you agree to these Terms. If you do not agree, do not use the service.</p>
+
+    <h3 class="font-display font-bold text-ink">2. Eligibility</h3>
+    <p>You must be at least 18 years old and able to form a binding contract under the Indian Contract Act, 1872 to use SuperSpace. By using the service you confirm that the information you provide is accurate.</p>
+
+    <h3 class="font-display font-bold text-ink">3. What SuperSpace is — and is not</h3>
+    <p>SuperSpace is a neutral marketplace and communication platform only. Experts are independent contractors, not our employees or agents. We do not provide consultations ourselves and do not endorse, guarantee, or take responsibility for any advice, information, or service an Expert provides.</p>
+    <ul>
+      <li><strong>Not professional advice.</strong> Content on the platform is for general informational purposes and is not a substitute for professional medical, mental-health, legal, financial, tax, or other licensed advice. Always consult a qualified professional for your specific situation. In an emergency, contact local emergency services.</li>
+      <li>You are solely responsible for how you use any guidance received through the platform.</li>
+    </ul>
+
+    <h3 class="font-display font-bold text-ink">4. Payments, per-minute billing & taxes</h3>
+    <p>Seekers pay a per-minute rate set by each Expert, shown before the call begins, via supported payment methods including UPI. A live meter records billable minutes. Payments are processed by third-party payment providers; we do not store full card details. Applicable taxes (including GST, where relevant) may be added.</p>
+
+    <h3 class="font-display font-bold text-ink">5. Refunds</h3>
+    <p>Minutes billed are generally non-refundable once a call is completed. Where a call fails or drops due to a verified technical issue on the platform, affected minutes may be refunded to your in-app wallet at our reasonable discretion, in line with our refund policy.</p>
+
+    <h3 class="font-display font-bold text-ink">6. Expert obligations & earnings</h3>
+    <p>Experts must complete identity verification, provide accurate information about their qualifications, hold any licences required for their field, and comply with applicable law. Experts earn a share of call revenue (up to 80%, as specified in the Expert Terms) and may withdraw available balances to a valid UPI ID. Earnings are not guaranteed and depend on rates, availability and demand.</p>
+
+    <h3 class="font-display font-bold text-ink">7. Acceptable use</h3>
+    <ul>
+      <li>No unlawful, abusive, harassing, fraudulent, or harmful conduct.</li>
+      <li>No sharing of another person's private information without consent.</li>
+      <li>No attempt to take payments or continue the relationship off-platform to avoid fees.</li>
+      <li>No recording of calls without the other party's consent.</li>
+    </ul>
+
+    <h3 class="font-display font-bold text-ink">8. Disclaimers & limitation of liability</h3>
+    <p>The service is provided "as is" and "as available" without warranties of any kind. To the maximum extent permitted by law, SuperSpace is not liable for any indirect, incidental, or consequential damages, or for the acts, omissions, or advice of any Expert or Seeker. Our total liability for any claim is limited to the amount you paid through the platform in the three months before the claim.</p>
+
+    <h3 class="font-display font-bold text-ink">9. Suspension & termination</h3>
+    <p>We may suspend or terminate accounts that breach these Terms or applicable law. You may stop using the service and close your account at any time.</p>
+
+    <h3 class="font-display font-bold text-ink">10. Changes & governing law</h3>
+    <p>We may update these Terms from time to time; material changes will be notified in-app. These Terms are governed by the laws of India, and disputes are subject to the exclusive jurisdiction of the courts of [City], India.</p>
+
+    <h3 class="font-display font-bold text-ink">11. Contact</h3>
+    <p>Questions about these Terms: <a href="mailto:legal@superspace.app">legal@superspace.app</a>.</p>
+  </div>
+</section>
+
+<!-- ======================= LEGAL: PRIVACY ======================= -->
+<section id="privacy" class="relative px-5 pt-10 pb-20">
+  <div class="legal mx-auto reveal">
+    <h2 class="font-display text-3xl font-extrabold sm:text-4xl">Privacy Policy</h2>
+    <p class="mt-2 text-sm text-muted">Last updated: 12 September 2026</p>
+    <div class="glass mt-5 rounded-2xl p-4 text-sm text-muted">⚠️ Template only. Confirm it reflects what your app actually collects and processes, and align it with the Digital Personal Data Protection Act, 2023 and Google Play's Data Safety requirements before publishing.</div>
+
+    <h3 class="font-display font-bold text-ink">1. Who we are</h3>
+    <p>This policy explains how [Legal Entity Name] ("we") handles personal data in the SuperSpace app and on this website. For privacy questions, contact our Grievance Officer at <a href="mailto:privacy@superspace.app">privacy@superspace.app</a>.</p>
+
+    <h3 class="font-display font-bold text-ink">2. Data we collect</h3>
+    <ul>
+      <li><strong>Account data:</strong> name, phone number, email, and profile details you provide.</li>
+      <li><strong>Expert verification data:</strong> identity and qualification documents submitted by Experts.</li>
+      <li><strong>Transaction data:</strong> call records (duration, rate, amount), payment references, and payout details. Full card numbers are handled by our payment processors, not stored by us.</li>
+      <li><strong>Usage & device data:</strong> app interactions, device identifiers, and approximate location used for security and functionality.</li>
+      <li><strong>Call content:</strong> live audio/video is not recorded unless both participants explicitly opt in.</li>
+    </ul>
+
+    <h3 class="font-display font-bold text-ink">3. How we use it</h3>
+    <ul>
+      <li>To provide and operate the service, connect calls, and process payments and payouts.</li>
+      <li>To verify Experts, prevent fraud, and keep the platform safe.</li>
+      <li>To provide support and, where permitted, send service updates.</li>
+      <li>To comply with legal, tax, and regulatory obligations.</li>
+    </ul>
+
+    <h3 class="font-display font-bold text-ink">4. Sharing</h3>
+    <p>We share data only with service providers who help us run the platform (e.g. payment processors, cloud hosting, calling infrastructure, verification partners), and where required by law. We do not sell your personal data.</p>
+
+    <h3 class="font-display font-bold text-ink">5. Retention & security</h3>
+    <p>We keep personal data only as long as needed for the purposes above or as required by law, and we use reasonable technical and organisational safeguards to protect it. No system is perfectly secure.</p>
+
+    <h3 class="font-display font-bold text-ink">6. Your rights</h3>
+    <p>Subject to applicable law, you may request access to, correction of, or deletion of your personal data, and may withdraw consent. To exercise these rights, contact <a href="mailto:privacy@superspace.app">privacy@superspace.app</a>.</p>
+
+    <h3 class="font-display font-bold text-ink">7. Children</h3>
+    <p>SuperSpace is not intended for anyone under 18, and we do not knowingly collect data from children.</p>
+
+    <h3 class="font-display font-bold text-ink">8. Changes</h3>
+    <p>We may update this policy; material changes will be notified in-app or on this page with a revised date above.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="relative border-t border-white/8 px-5 py-14">
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <a href="#top" class="flex items-center gap-2.5">
+          <span class="grid h-9 w-9 place-items-center rounded-xl grad-berry"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-4.4 0-8 3.2-8 7.2 0 2.3 1.2 4.3 3.1 5.6V20l3.2-1.7c.55.1 1.12.15 1.7.15 4.4 0 8-3.2 8-7.2S16.4 3 12 3Z" fill="#fff"/><circle cx="8.8" cy="10.2" r="1.15" fill="#E91E63"/><circle cx="12" cy="10.2" r="1.15" fill="#E91E63"/><circle cx="15.2" cy="10.2" r="1.15" fill="#E91E63"/></svg></span>
+          <span class="font-display text-lg font-extrabold">SuperSpace</span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm text-muted">Live 1:1 advice from verified experts. Pay per minute, no subscription.</p>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wide text-ink">Product</h4>
+        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-muted">
+          <li><a href="#how" class="hover:text-ink transition-colors">How it works</a></li>
+          <li><a href="#experts" class="hover:text-ink transition-colors">Experts</a></li>
+          <li><a href="#pricing" class="hover:text-ink transition-colors">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-ink transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wide text-ink">For Experts</h4>
+        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-muted">
+          <li><a href="#for-experts" class="hover:text-ink transition-colors">Become an expert</a></li>
+          <li><a href="#for-experts" class="hover:text-ink transition-colors">Earnings &amp; payouts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wide text-ink">Legal &amp; contact</h4>
+        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-muted">
+          <li><a href="#privacy" class="hover:text-ink transition-colors">Privacy Policy</a></li>
+          <li><a href="#terms" class="hover:text-ink transition-colors">Terms of Service</a></li>
+          <li><a href="mailto:hello@superspace.app" class="hover:text-ink transition-colors">hello@superspace.app</a></li>
+        </ul>
+        <div class="mt-4 flex gap-3">
+          <a href="#" aria-label="Instagram" class="glass grid h-9 w-9 place-items-center rounded-full text-muted hover:text-ink transition-colors"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="X" class="glass grid h-9 w-9 place-items-center rounded-full text-muted hover:text-ink transition-colors"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 3h3.3l-7.2 8.2L23 21h-6.6l-5.2-6.8L5.3 21H2l7.7-8.8L1.6 3h6.8l4.7 6.2L18.2 3Zm-1.2 16h1.8L7.1 4.9H5.2L17 19Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn" class="glass grid h-9 w-9 place-items-center rounded-full text-muted hover:text-ink transition-colors"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9V9Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p class="mt-10 text-xs leading-relaxed text-muted">SuperSpace is a platform that connects users with independent experts. It does not itself provide medical, mental-health, legal, financial, or other professional advice, and is not a substitute for consulting a qualified professional. Experts are independent and solely responsible for the guidance they provide.</p>
+    <div class="mt-6 flex flex-col items-center justify-between gap-3 border-t border-white/8 pt-6 text-sm text-muted sm:flex-row">
+      <p>© 2026 SuperSpace. All rights reserved.</p>
+      <p class="flex items-center gap-1.5">Made in India <span aria-hidden="true">🇮🇳</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  if (!('IntersectionObserver' in window)) document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+</script>
