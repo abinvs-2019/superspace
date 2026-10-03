@@ -70,25 +70,6 @@ tailwind.config = {
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: none; }
 
-  .legal { max-width: 48rem; }
-  .legal h3 { font-size: 1.05rem; margin-top: 1.6rem; }
-  .legal p, .legal li { color: #E4BDC2; font-size: .95rem; line-height: 1.7; }
-  .legal ul { list-style: disc; padding-left: 1.25rem; margin-top: .4rem; display: flex; flex-direction: column; gap: .25rem; }
-  .legal a { color: #FF6FA5; }
-  .legal p + p, .legal ul + p, .legal p + ul { margin-top: .6rem; }
-  .legal h3 { scroll-margin-top: 6rem; }
-  .legal strong { color: #EBDEF4; }
-  .legal .summary { margin-top: 1.5rem; padding: 1.25rem 1.4rem; border-radius: 1rem; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
-  .legal .summary li { color: #EBDEF4; }
-  .legal .note { margin-top: .8rem; padding-left: 1rem; border-left: 2px solid #FF4081; color: #EBDEF4; }
-  .legal .toc { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .15rem 1.5rem; font-size: .88rem; }
-  .legal .toc a { color: #E4BDC2; text-decoration: none; padding: .2rem 0; }
-  .legal .toc a:hover { color: #EBDEF4; }
-  .legal .table-wrap { overflow-x: auto; margin-top: .8rem; }
-  .legal table { width: 100%; border-collapse: collapse; font-size: .92rem; }
-  .legal th, .legal td { text-align: left; vertical-align: top; padding: .65rem .9rem .65rem 0; border-bottom: 1px solid rgba(255,255,255,.08); line-height: 1.6; }
-  .legal th { color: #EBDEF4; font-weight: 600; width: 34%; }
-  .legal td { color: #E4BDC2; }
 
   @media (prefers-reduced-motion: reduce) {
     .float { animation: none; }
@@ -380,7 +361,7 @@ tailwind.config = {
           <li class="flex items-center gap-3"><span class="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-amber/15 text-gold">✓</span><span class="font-semibold">You set your own rate</span></li>
         </ul>
         <a href="#" class="btn-gold mt-8 inline-block rounded-full px-7 py-3.5 text-base font-bold text-[#2A1C05]">Become an expert</a>
-        <p class="mt-3 text-xs text-muted">Earnings and payouts are explained in our <a href="#t-earnings" class="underline hover:text-ink">Terms of Service</a>.</p>
+        <p class="mt-3 text-xs text-muted">Earnings and payouts are explained in our <a href="/terms#t-earnings" class="underline hover:text-ink">Terms of Service</a>.</p>
       </div>
 
       <div class="reveal">
@@ -430,15 +411,15 @@ tailwind.config = {
       </details>
       <details class="faq glass rounded-glass px-6 py-5 reveal">
         <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">Is my call private?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-        <div class="answer text-muted">Calls run over secure, encrypted connections and are never recorded. Messages are stored so you can see your conversation history. How we handle your data is described in our <a href="#privacy" class="underline hover:text-ink">Privacy Policy</a>.</div>
+        <div class="answer text-muted">Calls run over secure, encrypted connections and are never recorded. Messages are stored so you can see your conversation history. How we handle your data is described in our <a href="/privacy-policy" class="underline hover:text-ink">Privacy Policy</a>.</div>
       </details>
       <details class="faq glass rounded-glass px-6 py-5 reveal">
         <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">How do payouts work for experts?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-        <div class="answer text-muted">Experts earn from every call and message. Earnings build up in the app and can be withdrawn straight to a UPI ID. Payouts are reviewed by our team, usually within a few working days. See our <a href="#t-earnings" class="underline hover:text-ink">Terms of Service</a>.</div>
+        <div class="answer text-muted">Experts earn from every call and message. Earnings build up in the app and can be withdrawn straight to a UPI ID. Payouts are reviewed by our team, usually within a few working days. See our <a href="/terms#t-earnings" class="underline hover:text-ink">Terms of Service</a>.</div>
       </details>
       <details class="faq glass rounded-glass px-6 py-5 reveal">
         <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">What if the call drops?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
-        <div class="answer text-muted">The app tries to reconnect while the call stays open, and the call is charged until one of you hangs up. If it doesn&rsquo;t come back, hang up and call again. If you lost minutes to a failure on our side, email <a href="mailto:info.super.bits@gmail.com" class="underline hover:text-ink">info.super.bits@gmail.com</a> within 30 days and we&rsquo;ll credit them back.</div>
+        <div class="answer text-muted">The app tries to reconnect while the call stays open, and the call is charged until one of you hangs up. If it doesn&rsquo;t come back, hang up and call again. If you lost minutes to a failure on our side, email <a href="mailto:info.super.bits@gmail.com" class="underline hover:text-ink">info.super.bits@gmail.com</a> within 30 days and we&rsquo;ll credit them back (see our <a href="/refund-policy" class="underline hover:text-ink">Refund Policy</a>).</div>
       </details>
       <details class="faq glass rounded-glass px-6 py-5 reveal">
         <summary class="flex items-center justify-between gap-4 font-display text-lg font-bold">Do I need to subscribe?<svg class="chev shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="#E4BDC2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
@@ -466,223 +447,6 @@ tailwind.config = {
         </a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ======================= LEGAL: TERMS ======================= -->
-<section id="terms" class="relative px-5 pt-20 pb-10 border-t border-white/8">
-  <div class="legal mx-auto">
-    <p class="text-sm font-bold uppercase tracking-[0.18em] text-glow">Legal</p>
-    <h2 class="mt-2 font-display text-3xl font-extrabold sm:text-4xl">Terms of Service</h2>
-    <p class="mt-2 text-sm text-muted">Effective and last updated: 3 October 2026</p>
-
-    <div class="summary">
-      <p class="font-bold text-ink">In plain words</p>
-      <ul>
-        <li>SuperSpace is for paid, one-to-one consultations with experts you choose. It is not a dating, companionship or random-chat app.</li>
-        <li>You must be 18 or older. Experts are reviewed and approved by our team before they are listed.</li>
-        <li>You buy coins and spend them at each expert&rsquo;s per-minute or per-message rate, shown before you pay. Calls are charged from the moment they connect.</li>
-        <li>Coins don&rsquo;t expire, but they can&rsquo;t be cashed out or refunded, except where the law or our own mistake requires it.</li>
-        <li>We have zero tolerance for sexual content, solicitation, harassment, hate and anything involving minors.</li>
-        <li>You can report or block anyone, and delete your account from the app at any time.</li>
-      </ul>
-      <p>This summary doesn&rsquo;t replace the terms below, which are what you agree to.</p>
-    </div>
-
-    <nav class="toc" aria-label="Terms sections">
-      <a href="#t-about">1. About these terms</a><a href="#t-service">2. What SuperSpace is</a>
-      <a href="#t-eligibility">3. Who can use it</a><a href="#t-experts">4. Experts</a>
-      <a href="#t-coins">5. Coins and payments</a><a href="#t-calls">6. Calls and messages</a>
-      <a href="#t-earnings">7. Expert earnings and payouts</a><a href="#t-conduct">8. Community standards</a>
-      <a href="#t-safety">9. Reporting and enforcement</a><a href="#t-advice">10. Not emergency or regulated advice</a>
-      <a href="#t-content">11. Your content</a><a href="#t-reviews">12. Ratings and reviews</a>
-      <a href="#t-deletion">13. Deleting your account</a><a href="#t-changes">14. Changes</a>
-      <a href="#t-liability">15. Disclaimers and liability</a><a href="#t-indemnity">16. Indemnity</a>
-      <a href="#t-stores">17. App stores</a><a href="#t-law">18. Governing law</a>
-      <a href="#t-contact">19. Grievances and contact</a>
-    </nav>
-
-    <h3 id="t-about" class="font-display font-bold text-ink">1. About these terms</h3>
-    <p>SuperSpace (the &ldquo;app&rdquo; or &ldquo;service&rdquo;) is operated by <strong>SuperBits Labs</strong>, India (&ldquo;we&rdquo;, &ldquo;us&rdquo;). These terms are an agreement between you and SuperBits Labs, and apply to everyone who uses SuperSpace: people seeking guidance (&ldquo;Seekers&rdquo;) and the independent experts and advisors who offer it (&ldquo;Experts&rdquo;).</p>
-    <p>By creating an account or using the app, you agree to these terms, including the community standards in section 8 and our <a href="safety-standards.html">Safety Standards</a>. If you do not agree, do not use SuperSpace.</p>
-
-    <h3 id="t-service" class="font-display font-bold text-ink">2. What SuperSpace is</h3>
-    <p>SuperSpace is a marketplace for paid, one-to-one voice calls, video calls and messages with independent Experts in areas such as careers, business, studying abroad, fitness and personal development.</p>
-    <ul>
-      <li><strong>You choose who you talk to.</strong> You see an Expert&rsquo;s profile, photos, rates, rating and reviews before contacting them. There is no random or anonymous matching. Every account is signed in and named, and both sides see who they are talking to.</li>
-      <li><strong>You pay for an Expert&rsquo;s time and expertise.</strong> SuperSpace is not a dating or companionship service. Paying for companionship, romance or intimacy is prohibited (section 8).</li>
-      <li><strong>We run the platform, not the advice.</strong> Experts are independent. They are not our employees or agents, and they are solely responsible for the guidance they give. We are not a party to the consultation between a Seeker and an Expert.</li>
-    </ul>
-
-    <h3 id="t-eligibility" class="font-display font-bold text-ink">3. Who can use it</h3>
-    <ul>
-      <li><strong>You must be at least 18 years old</strong> and able to form a binding contract under the Indian Contract Act, 1872. We ask for your date of birth at sign-up and refuse accounts for anyone younger.</li>
-      <li>You sign in with your phone number, Apple ID or Google account. You are responsible for activity on your account, so keep it secure.</li>
-      <li>Use your real name and a picture of yourself or one we provide. Don&rsquo;t impersonate anyone, and don&rsquo;t use more than one account to get around a block or suspension.</li>
-    </ul>
-
-    <h3 id="t-experts" class="font-display font-bold text-ink">4. Experts</h3>
-    <p><strong>Applying and verification.</strong> Anyone can apply to become an Expert from the app, but applying doesn&rsquo;t make you one. Our team reviews every application, contacts the applicant by phone and checks their identity and claimed expertise before approving them. We may ask for documents, and may decline an application or remove an Expert at our discretion, for example if information turns out to be false.</p>
-    <p><strong>Experts agree to:</strong></p>
-    <ul>
-      <li>describe themselves, their experience and qualifications truthfully, and hold any licence their field requires. Never present yourself as a doctor, therapist, lawyer or other regulated professional unless you are one;</li>
-      <li>offer only the guidance described in their profile, within the law and these terms;</li>
-      <li>set their own rates for voice, video and messages, within the limits the app allows;</li>
-      <li>post only photos they have the right to share, which represent them and their work and do not invite romance or companionship;</li>
-      <li>keep every paid consultation on SuperSpace and never ask a Seeker to pay outside the app;</li>
-      <li>answer calls while they are online. If several calls in a row go unanswered (currently three), the app takes the Expert off the list until they go online again;</li>
-      <li>handle their own taxes on what they earn.</li>
-    </ul>
-
-    <h3 id="t-coins" class="font-display font-bold text-ink">5. Coins and payments</h3>
-    <p>Calls and messages are paid for with coins, bought in the app. Payments are processed by Razorpay (UPI, cards and netbanking). We never see or store your full card or bank details.</p>
-    <ul>
-      <li><strong>Value.</strong> Every pack shows its price and how many coins it gives, including any bonus coins, before you pay.</li>
-      <li><strong>No expiry.</strong> Coins don&rsquo;t expire while your account is open.</li>
-      <li><strong>No cash value.</strong> Coins are a prepaid credit for SuperSpace. They can&rsquo;t be withdrawn, exchanged for money, sold or transferred to another account.</li>
-      <li><strong>Refunds.</strong> Coin purchases are final, except where the law requires a refund or something went wrong on our side: a payment taken but no coins credited, a duplicate charge, a charge for a call that never connected, or minutes lost to a technical failure of our service. Email us within 30 days (section 19) and we will credit the coins or refund the payment to its original method.</li>
-      <li><strong>Payment links.</strong> If the app sends you to a payment page, pay with the phone number or email of your SuperSpace account. That is how we know whose wallet to credit.</li>
-    </ul>
-    <p>Prices are in Indian rupees, and include any taxes we are required to charge unless stated otherwise.</p>
-
-    <h3 id="t-calls" class="font-display font-bold text-ink">6. Calls and messages</h3>
-    <p>An Expert&rsquo;s rates are shown on their profile and on the call buttons before you start. By starting a call or sending a message, you agree to pay that rate.</p>
-    <div class="table-wrap">
-      <table>
-        <tr><th scope="row">Voice and video calls</th><td>Charged at the Expert&rsquo;s per-minute rate from the moment the call connects, for each started minute, with a minimum of one minute.</td></tr>
-        <tr><th scope="row">Calls that don&rsquo;t connect</th><td>Not charged, whether declined, missed, cancelled, or failed for technical reasons.</td></tr>
-        <tr><th scope="row">Dropped connections</th><td>If the connection drops, the app tries to reconnect while the call stays open, and the call is still charged until one of you hangs up. If it doesn&rsquo;t come back, hang up. Minutes lost to a failure on our side can be credited back (section 5).</td></tr>
-        <tr><th scope="row">Running out of coins</th><td>The call ends automatically when your coins run out. The app warns you in the final minute, and you are never charged more than your balance.</td></tr>
-        <tr><th scope="row">Messages</th><td>Charged at the Expert&rsquo;s per-message rate when sent. Messages are short (currently up to 50 characters) and are meant for arranging or following up on a consultation.</td></tr>
-      </table>
-    </div>
-    <p><strong>We never record calls.</strong> Calls are encrypted in transit and travel directly between the two devices where possible, or through our relay servers when a direct connection isn&rsquo;t possible. Messages are stored on our servers so you can see your conversation history. Never record a call or share its contents without the other person&rsquo;s consent.</p>
-
-    <h3 id="t-earnings" class="font-display font-bold text-ink">7. Expert earnings and payouts</h3>
-    <ul>
-      <li>What you earn from each call and message is credited to your earnings in the app, after any platform fee shown in the app.</li>
-      <li>You can withdraw earnings to your UPI ID once they reach the minimum shown in the app. The app shows what your earnings are worth before you withdraw.</li>
-      <li>Payouts are reviewed and processed by our team, usually within a few working days. A payout may be paused while we investigate a complaint, chargeback or suspected abuse, and earnings from activity that breaks these terms may be withheld or reversed.</li>
-      <li>If we introduce or change a platform fee, we will tell you in the app at least 30 days before it applies, and it will not apply to earnings made before then.</li>
-      <li>Check your UPI details carefully. We can&rsquo;t recover a payout sent to details you gave us.</li>
-    </ul>
-
-    <h3 id="t-conduct" class="font-display font-bold text-ink">8. Community standards</h3>
-    <p class="note">SuperSpace has <strong>zero tolerance</strong> for objectionable content and abusive users. Breaking these standards leads to removal of the content and, in serious or repeated cases, permanent removal of the account. In those cases there is no refund of coins and no payout of earnings connected to the abuse.</p>
-    <p>On calls, in messages, profiles, photos, reviews and anywhere else in the app, you must not:</p>
-    <ul>
-      <li>share or request sexual content or nudity, or offer, request or arrange sexual services;</li>
-      <li>offer or seek dating, romance, companionship, escort services, or any payment for companionship or intimacy;</li>
-      <li>involve, depict or target anyone under 18 in any way (see our <a href="safety-standards.html">Safety Standards</a>);</li>
-      <li>harass, bully, threaten, stalk or intimidate anyone, or encourage self-harm or violence;</li>
-      <li>post hate speech or demean anyone for their religion, caste, race, ethnicity, gender, sexual orientation, disability or any similar characteristic;</li>
-      <li>impersonate anyone, misrepresent who you are, or claim qualifications you don&rsquo;t hold;</li>
-      <li>share another person&rsquo;s personal information, photos or recordings without their consent;</li>
-      <li>arrange payment outside SuperSpace, run scams, or ask for money, gifts, passwords or financial details;</li>
-      <li>spam, advertise unrelated services, or use bots or automation;</li>
-      <li>break the law or help anyone else do so, or interfere with, probe or exploit the app or its servers.</li>
-    </ul>
-
-    <h3 id="t-safety" class="font-display font-bold text-ink">9. Reporting, blocking and enforcement</h3>
-    <ul>
-      <li><strong>Block</strong> anyone from their profile or your conversation with them. Once blocked, neither of you can call or message the other, and neither appears in the other&rsquo;s search results or home feed.</li>
-      <li><strong>Report</strong> a person or message from the same menu. Our team reviews reports, aims to act within 24 hours, and acts against anyone who breaks these terms.</li>
-      <li>We may remove content, limit features, suspend or permanently remove accounts, de-list Experts, and withhold earnings tied to abuse. Where the law requires it, or someone may be in danger, we cooperate with law enforcement.</li>
-      <li>If you think we got a decision wrong, email us (section 19) and a person will review it.</li>
-    </ul>
-
-    <h3 id="t-advice" class="font-display font-bold text-ink">10. Not emergency or regulated advice</h3>
-    <p>Experts share their experience and guidance. Unless an Expert tells you they hold the relevant licence, nothing on SuperSpace is medical, mental-health, legal, financial or tax advice, and it never replaces a qualified professional. Decisions you make after a consultation are your own.</p>
-    <p class="note"><strong>SuperSpace is not for emergencies.</strong> If you or someone else is in danger, call <strong>112</strong>. For mental-health support in India, call Tele-MANAS on <strong>14416</strong>, free, any time.</p>
-
-    <h3 id="t-content" class="font-display font-bold text-ink">11. Your content</h3>
-    <p>You own what you post: your profile, photos, posts, messages and reviews. You give SuperBits Labs a non-exclusive, worldwide, royalty-free licence to host, store, display and transmit that content, only to run and promote SuperSpace. The licence ends when you delete the content or your account, except for copies we must keep by law. You confirm you have the right to share what you post, and we may remove anything that breaks these terms or the law.</p>
-
-    <h3 id="t-reviews" class="font-display font-bold text-ink">12. Ratings and reviews</h3>
-    <p>After a call, you can rate the Expert and leave a written review. Reviews must be honest and about your own consultation. They are shown with your first name and the initial of your surname, never your full name. Experts may not offer anything in exchange for a review, and we may remove reviews that are fake, abusive or off-topic.</p>
-
-    <h3 id="t-deletion" class="font-display font-bold text-ink">13. Deleting your account</h3>
-    <p>You can delete your account at any time from <strong>Profile → Delete my account</strong> in the app, or by following the steps at <a href="https://app.superspace.superbits.in/account-deletion">app.superspace.superbits.in/account-deletion</a>.</p>
-    <ul>
-      <li>Deletion removes your profile, Expert profile and posts, your messages, your blocks, your registered devices and your sign-in.</li>
-      <li>Records of calls and payments are kept without your account attached, because they form part of the other person&rsquo;s history and our accounting records, which the law requires us to keep. Reports made by or about you are also kept so we can keep acting on safety issues.</li>
-      <li><strong>Unused coins are not refunded</strong> when you delete your account.</li>
-      <li>Experts must first withdraw their earnings and wait for any payout in progress to arrive.</li>
-    </ul>
-    <p>We may also suspend or close an account that breaks these terms (section 9).</p>
-
-    <h3 id="t-changes" class="font-display font-bold text-ink">14. Changes to the service and these terms</h3>
-    <p>We may add, change or remove features, and update these terms. If a change matters for you, we will tell you in the app or by email before it takes effect, and update the date at the top of these terms. If you keep using SuperSpace after that, you accept the new terms. If you don&rsquo;t accept them, you can delete your account.</p>
-
-    <h3 id="t-liability" class="font-display font-bold text-ink">15. Disclaimers and limitation of liability</h3>
-    <p>We work to keep SuperSpace available, safe and accurate, but provide it &ldquo;as is&rdquo; and &ldquo;as available&rdquo;. We don&rsquo;t guarantee uninterrupted service, call quality, or the accuracy of what Experts say.</p>
-    <p>To the maximum extent permitted by law, SuperBits Labs is not liable for indirect, incidental or consequential losses, or for the acts, omissions or advice of any Expert or Seeker. Our total liability for any claim is limited to the amount you paid us in the three months before the claim arose. Nothing in these terms limits liability that cannot be limited by law, or your rights as a consumer under Indian law.</p>
-
-    <h3 id="t-indemnity" class="font-display font-bold text-ink">16. Indemnity</h3>
-    <p>If someone makes a claim against SuperBits Labs because of content you posted, how you used SuperSpace, or your breach of these terms or the law, you agree to cover the reasonable costs of that claim.</p>
-
-    <h3 id="t-stores" class="font-display font-bold text-ink">17. App stores</h3>
-    <p>If you downloaded SuperSpace from the Apple App Store or Google Play, these terms are between you and SuperBits Labs only, not Apple or Google. We, not they, are responsible for the app and its support. The store&rsquo;s own terms also apply. Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them.</p>
-
-    <h3 id="t-law" class="font-display font-bold text-ink">18. Governing law and disputes</h3>
-    <p>These terms are governed by the laws of India. Please contact us first (section 19); most problems are settled quickly that way. If we can&rsquo;t resolve it, the dispute will be decided by the competent courts in India. This doesn&rsquo;t affect your right to approach a consumer commission.</p>
-
-    <h3 id="t-contact" class="font-display font-bold text-ink">19. Grievances and contact</h3>
-    <p>For questions, complaints, refund requests or reports, including complaints under the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021, contact our Grievance Officer at <a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a>. We acknowledge complaints within 24 hours and aim to resolve them within 15 days. You can also report a person or message directly in the app.</p>
-  </div>
-</section>
-
-<!-- ======================= LEGAL: PRIVACY ======================= -->
-<section id="privacy" class="relative px-5 pt-10 pb-20">
-  <div class="legal mx-auto">
-    <h2 class="font-display text-3xl font-extrabold sm:text-4xl">Privacy Policy</h2>
-    <p class="mt-2 text-sm text-muted">Effective and last updated: 3 October 2026</p>
-
-    <h3 class="font-display font-bold text-ink">1. Who we are</h3>
-    <p>This policy explains how <strong>SuperBits Labs</strong>, India (&ldquo;we&rdquo;) handles personal data in the SuperSpace app and on this website. For privacy questions or requests, contact our Grievance Officer at <a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a>.</p>
-
-    <h3 class="font-display font-bold text-ink">2. Data we collect</h3>
-    <ul>
-      <li><strong>Account data:</strong> your name, phone number or email (depending on how you sign in), date of birth, gender and profile picture.</li>
-      <li><strong>Expert data:</strong> the specialty, bio, rates and photos Experts publish, and what they give us to apply, such as a contact phone number, social media links and, if we ask, verification documents.</li>
-      <li><strong>Messages:</strong> the messages you send and receive in the app, stored so you can see your conversation history.</li>
-      <li><strong>Calls:</strong> who you called, when, for how long, at what rate and what was charged. <strong>We never record the audio or video of calls.</strong></li>
-      <li><strong>Payments and payouts:</strong> your coin balance and transactions, payment references from Razorpay, and, for Experts, the UPI ID used for payouts. Full card and bank details are handled by Razorpay, not stored by us.</li>
-      <li><strong>Safety data:</strong> the people you block, and reports you make or that are made about you.</li>
-      <li><strong>Ratings and reviews</strong> you give after calls.</li>
-      <li><strong>Device and usage data:</strong> a notification token so calls and messages can reach your phone, your app version and platform, your IP address (used to protect the service from abuse), in-app usage events and crash reports. We do not collect your location.</li>
-    </ul>
-
-    <h3 class="font-display font-bold text-ink">3. How we use it</h3>
-    <ul>
-      <li>To provide the service: sign you in, show profiles, connect calls, deliver messages and notifications, and process payments and payouts.</li>
-      <li>To verify Experts, prevent fraud and abuse, and act on reports.</li>
-      <li>To fix crashes and improve the app.</li>
-      <li>To provide support, and to meet our legal, tax and accounting obligations.</li>
-    </ul>
-
-    <h3 class="font-display font-bold text-ink">4. Who we share it with</h3>
-    <p>Other users see what you put on your profile, your first name and surname initial on reviews, and your name and picture during calls and chats. We share data only with the service providers that run SuperSpace for us, and only for that purpose:</p>
-    <ul>
-      <li><strong>Google Firebase</strong>: sign-in, notifications, usage analytics and crash reports;</li>
-      <li><strong>Apple and Google</strong>: when you choose to sign in with them;</li>
-      <li><strong>Razorpay</strong>: payments and Expert payouts;</li>
-      <li><strong>Amazon Web Services</strong>: storage of profile pictures and photos;</li>
-      <li>the cloud servers that run our backend and call relays.</li>
-    </ul>
-    <p>We also disclose data when the law requires it. We do not sell your personal data, and we do not use it for third-party advertising.</p>
-
-    <h3 class="font-display font-bold text-ink">5. Retention and security</h3>
-    <p>We keep your data while your account is open. When you delete your account, we delete your profile, posts, messages, blocks and devices. We keep call and payment records without your account attached for as long as tax and accounting law requires, and safety reports for as long as needed to protect users. Data travels over encrypted connections, and access is limited to people who need it to run the service. No system is perfectly secure.</p>
-
-    <h3 class="font-display font-bold text-ink">6. Your rights</h3>
-    <p>You can see and change your profile in the app, and delete your account from <strong>Profile → Delete my account</strong> or at <a href="https://app.superspace.superbits.in/account-deletion">app.superspace.superbits.in/account-deletion</a>. Subject to applicable law, including the Digital Personal Data Protection Act, 2023, you may also ask us for access to or correction of your data, withdraw consent, or raise a grievance by emailing <a href="mailto:info.super.bits@gmail.com">info.super.bits@gmail.com</a>.</p>
-
-    <h3 class="font-display font-bold text-ink">7. Children</h3>
-    <p>SuperSpace is only for people aged 18 and over. We refuse sign-ups from anyone younger and do not knowingly collect data from children. If you believe a child is using SuperSpace, tell us and we will remove the account. Read our <a href="safety-standards.html">Safety Standards</a>.</p>
-
-    <h3 class="font-display font-bold text-ink">8. Changes</h3>
-    <p>We may update this policy. Material changes will be notified in the app or on this page, with a revised date above.</p>
   </div>
 </section>
 
@@ -718,9 +482,11 @@ tailwind.config = {
       <div>
         <h4 class="text-sm font-bold uppercase tracking-wide text-ink">Legal &amp; contact</h4>
         <ul class="mt-4 flex flex-col gap-2.5 text-sm text-muted">
-          <li><a href="#privacy" class="hover:text-ink transition-colors">Privacy Policy</a></li>
-          <li><a href="#terms" class="hover:text-ink transition-colors">Terms of Service</a></li>
-          <li><a href="safety-standards.html" class="hover:text-ink transition-colors">Safety Standards</a></li>
+          <li><a href="/terms" class="hover:text-ink transition-colors">Terms of Service</a></li>
+          <li><a href="/privacy-policy" class="hover:text-ink transition-colors">Privacy Policy</a></li>
+          <li><a href="/refund-policy" class="hover:text-ink transition-colors">Refund Policy</a></li>
+          <li><a href="/safety-standards" class="hover:text-ink transition-colors">Safety Standards</a></li>
+          <li><a href="/contact" class="hover:text-ink transition-colors">Contact</a></li>
           <li><a href="mailto:info.super.bits@gmail.com" class="hover:text-ink transition-colors">info.super.bits@gmail.com</a></li>
         </ul>
         <div class="mt-4 flex gap-3">
@@ -738,6 +504,16 @@ tailwind.config = {
   </div>
 </footer>
 
+<script>
+  // The Terms and Privacy Policy used to live on this page. Links to them
+  // (#terms, #privacy, #t-…) are out in the world, so send them to the pages.
+  (function () {
+    var h = location.hash;
+    if (h === '#terms') location.replace('/terms');
+    else if (h.indexOf('#t-') === 0) location.replace('/terms' + h);
+    else if (h === '#privacy') location.replace('/privacy-policy');
+  })();
+</script>
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

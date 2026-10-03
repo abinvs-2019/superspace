@@ -1,0 +1,73 @@
+/* The legal pages: Terms, Privacy, Refunds, Contact. Same ground and type as
+   the Safety Standards page, so every policy reads as one set. */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: #17101F; color: #EBDEF4;
+  font-family: Inter, system-ui, sans-serif; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, .brand .word { font-family: "Plus Jakarta Sans", system-ui, sans-serif; letter-spacing: -0.02em; }
+a { color: #FF6FA5; }
+a:focus-visible { outline: 2px solid #FF4081; outline-offset: 3px; border-radius: 3px; }
+.wrap { max-width: 46rem; margin: 0 auto; padding: 40px 24px 72px; }
+
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.brand img { width: 32px; height: 32px; border-radius: 10px; object-fit: cover; display: block; }
+.brand .word { font-weight: 800; font-size: 18px; color: #EBDEF4; }
+
+.legalnav { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .85rem; }
+.legalnav a { color: #E4BDC2; text-decoration: none; padding: 2px 0; }
+.legalnav a:hover { color: #EBDEF4; }
+.legalnav a[aria-current="page"] { color: #FF6FA5; font-weight: 600; }
+
+.eyebrow { display: block; margin-top: 44px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: #FF4081; }
+h1 { font-size: clamp(1.9rem, 5vw, 2.4rem); font-weight: 800; line-height: 1.15; margin: 10px 0 6px; text-wrap: balance; }
+.updated { margin: 0; font-size: .85rem; color: #E4BDC2; opacity: .85; }
+
+h2 { font-size: 1.08rem; font-weight: 700; margin: 2.1rem 0 .5rem; color: #EBDEF4; scroll-margin-top: 1.5rem; text-wrap: balance; }
+p, li { color: #E4BDC2; font-size: .95rem; }
+p { margin: .6rem 0 0; }
+ul { padding-left: 1.25rem; margin: .5rem 0 0; }
+li { margin-top: .35rem; }
+strong { color: #EBDEF4; font-weight: 600; }
+
+.summary {
+  margin-top: 24px; padding: 18px 20px; border-radius: 16px;
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1);
+}
+.summary .label { margin: 0; font-weight: 700; color: #EBDEF4; }
+.summary li { color: #EBDEF4; }
+.note { margin-top: .8rem; padding-left: 1rem; border-left: 2px solid #FF4081; color: #EBDEF4; }
+
+.toc {
+  margin-top: 22px; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: .1rem 1.5rem; font-size: .88rem;
+}
+.toc a { color: #E4BDC2; text-decoration: none; padding: .2rem 0; }
+.toc a:hover { color: #EBDEF4; }
+
+.table-wrap { overflow-x: auto; margin-top: .8rem; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: left; vertical-align: top; padding: .65rem .9rem .65rem 0; border-bottom: 1px solid rgba(255,255,255,.08); line-height: 1.6; }
+th { color: #EBDEF4; font-weight: 600; width: 34%; }
+td { color: #E4BDC2; }
+
+.card {
+  margin-top: 16px; padding: 18px 20px; border-radius: 16px;
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1);
+}
+.card h2 { margin-top: 0; }
+
+footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); font-size: .82rem; color: #E4BDC2; }
+footer .legalnav { margin-bottom: 10px; }
+footer p { font-size: .82rem; opacity: .85; margin: 0; }
+
+@media print {
+  body { background: #fff; color: #000; }
+  .legalnav, .toc { display: none; }
+  p, li, td, th, strong, h1, h2, .summary li, .note { color: #000; }
+}
