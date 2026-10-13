@@ -1,26 +1,27 @@
 # SuperSpace
 
-Marketing landing page for SuperSpace — a mobile app for live 1:1 video & voice
-consultations with verified experts and advisors. Two-sided marketplace:
-seekers find and pay experts per minute; experts earn and withdraw revenue.
-India-first (₹ pricing, UPI).
-
-Single self-contained `index.html` (Tailwind CDN, no build step). Open directly
-or serve via GitHub Pages.
+Website for SuperSpace, the dating app where you say hi with a flower. Static HTML and one
+stylesheet (`assets/site.css`), no build step. GitHub Pages serves it at
+superspace.superbits.in and serves each `.html` file without its extension.
 
 ## Pages
-
-GitHub Pages serves each `.html` file without its extension.
 
 | URL | File |
 |---|---|
 | `/` | `index.html`: the landing page |
 | `/terms` | `terms.html`: Terms of Service |
 | `/privacy-policy` | `privacy-policy.html`: Privacy Policy |
-| `/refund-policy` | `refund-policy.html`: Refund Policy |
-| `/safety-standards` | `safety-standards.html`: CSAE standards |
-| `/contact` | `contact.html`: support, safety and grievance contact |
+| `/refund-policy` | `refund-policy.html`: Refunds & Cancellations |
+| `/community-guidelines` | `community-guidelines.html`: Community Guidelines |
+| `/safety-tips` | `safety-tips.html`: dating safety tips |
+| `/safety-standards` | `safety-standards.html`: Child Safety (CSAE) Standards |
+| `/contact` | `contact.html`: help, safety reports and Grievance Officer |
+| (any missing page) | `404.html` |
 
-The legal pages share `assets/legal.css`. The Terms and Privacy Policy used to be
-sections of `index.html`; a script there sends old `/#terms` and `/#privacy`
-links to the new pages.
+Keep these URLs: the app stores and the app itself link to them. The Terms keep their old
+`#t-…` anchors, and a script on the home page sends old `/#terms`, `/#t-…` and `/#privacy`
+links to the right page.
+
+Every page shares the same header, footer and styles, so change them on every page
+together. The legal pages must describe what the app actually does; update them when the
+app changes, and change the "last updated" date.
